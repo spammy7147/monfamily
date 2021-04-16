@@ -13,6 +13,9 @@ public class UserVO {
     private Integer userContact;
     private Date regDate;
     private Date lastLogin;
+    private boolean autoLogin;
+
+
 
 
     public Integer getUserNum() {
@@ -79,6 +82,14 @@ public class UserVO {
         this.lastLogin = lastLogin;
     }
 
+    public boolean isAutoLogin() {
+        return autoLogin;
+    }
+
+    public void setAutoLogin(boolean autoLogin) {
+        this.autoLogin = autoLogin;
+    }
+
     @Override
     public String toString() {
         return "UserVO{" +
@@ -90,6 +101,7 @@ public class UserVO {
                 ", userContact=" + userContact +
                 ", regDate=" + regDate +
                 ", lastLogin=" + lastLogin +
+                ", autoLogin=" + autoLogin +
                 '}';
     }
 }
