@@ -1,7 +1,13 @@
 package com.monfamily.wow.model;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Date;
 
+
+@Getter
+@ToString
 public class UserVO {
 
 
@@ -18,90 +24,39 @@ public class UserVO {
 
 
 
-    public Integer getUserNum() {
-        return userNum;
-    }
 
-    public void setUserNum(Integer userNum) {
-        this.userNum = userNum;
-    }
 
-    public String getUserId() {
-        return userId;
-    }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
-    public String getUserPw() {
-        return userPw;
-    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    public void setUserPw(String userPw) {
-        this.userPw = userPw;
-    }
+        UserVO userVO = (UserVO) o;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserMail() {
-        return userMail;
-    }
-
-    public void setUserMail(String userMail) {
-        this.userMail = userMail;
-    }
-
-    public Integer getUserContact() {
-        return userContact;
-    }
-
-    public void setUserContact(Integer userContact) {
-        this.userContact = userContact;
-    }
-
-    public Date getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(Date regDate) {
-        this.regDate = regDate;
-    }
-
-    public Date getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
-    public boolean isAutoLogin() {
-        return autoLogin;
-    }
-
-    public void setAutoLogin(boolean autoLogin) {
-        this.autoLogin = autoLogin;
+        if (autoLogin != userVO.autoLogin) return false;
+        if (!userNum.equals(userVO.userNum)) return false;
+        if (!userId.equals(userVO.userId)) return false;
+        if (!userPw.equals(userVO.userPw)) return false;
+        if (!userName.equals(userVO.userName)) return false;
+        if (!userMail.equals(userVO.userMail)) return false;
+        if (userContact != null ? !userContact.equals(userVO.userContact) : userVO.userContact != null) return false;
+        if (regDate != null ? !regDate.equals(userVO.regDate) : userVO.regDate != null) return false;
+        return lastLogin != null ? lastLogin.equals(userVO.lastLogin) : userVO.lastLogin == null;
     }
 
     @Override
-    public String toString() {
-        return "UserVO{" +
-                "userNum=" + userNum +
-                ", userId='" + userId + '\'' +
-                ", userPw='" + userPw + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userMail='" + userMail + '\'' +
-                ", userContact=" + userContact +
-                ", regDate=" + regDate +
-                ", lastLogin=" + lastLogin +
-                ", autoLogin=" + autoLogin +
-                '}';
+    public int hashCode() {
+        int result = userNum.hashCode();
+        result = 31 * result + userId.hashCode();
+        result = 31 * result + userPw.hashCode();
+        result = 31 * result + userName.hashCode();
+        result = 31 * result + userMail.hashCode();
+        result = 31 * result + (userContact != null ? userContact.hashCode() : 0);
+        result = 31 * result + (regDate != null ? regDate.hashCode() : 0);
+        result = 31 * result + (lastLogin != null ? lastLogin.hashCode() : 0);
+        result = 31 * result + (autoLogin ? 1 : 0);
+        return result;
     }
 }
