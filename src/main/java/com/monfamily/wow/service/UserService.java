@@ -1,26 +1,42 @@
 package com.monfamily.wow.service;
 
+import com.monfamily.wow.dto.UserDTO;
 import com.monfamily.wow.model.UserVO;
-import com.monfamily.wow.repository.IUserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Service
 public class UserService implements IUserService{
 
-    IUserMapper mapper;
+    @Override
+    public void userCreate(UserDTO user) {
 
-    @Autowired
-    public void setMapper(IUserMapper mapper) {
-        this.mapper = mapper;
     }
 
-    //회원가입
     @Override
-    public void userAdd(UserVO user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setUserPw(encoder.encode(user.getUserPw()));
-        mapper.userAdd(user);
+    public void userDelete(UserDTO user) {
+
+    }
+
+    @Override
+    public void userUpdate(UserDTO user) {
+
+    }
+
+    @Override
+    public void UserRead(UserDTO user) {
+
+    }
+
+    @Override
+    public void userLogin(UserVO user, HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    @Override
+    public void userLogout(Integer userNum) {
+
     }
 }

@@ -22,12 +22,6 @@ public class UserVO {
     private boolean autoLogin;
 
 
-
-
-
-
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

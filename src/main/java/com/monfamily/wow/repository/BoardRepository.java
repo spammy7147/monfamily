@@ -1,9 +1,9 @@
 package com.monfamily.wow.repository;
 
-import com.monfamily.wow.model.BoardVO;
+import com.monfamily.wow.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BoardRepository extends JpaRepository<BoardVO, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long> {
 
 
 }

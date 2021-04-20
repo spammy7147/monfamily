@@ -1,11 +1,12 @@
 package com.monfamily.wow.controller;
 
-import com.monfamily.wow.model.UserVO;
+import com.monfamily.wow.dto.UserDTO;
 import com.monfamily.wow.service.IUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -18,10 +19,10 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public String userAdd(@RequestBody UserVO user){
+    public String userAdd(@RequestBody UserDTO user){
         System.out.println("/user/ 요청들어옴 -> POST");
         System.out.println(user);
-        service.userAdd(user);
+        service.userCreate(user);
 
         return "joinSuccess";
     }

@@ -1,7 +1,8 @@
 package com.monfamily.wow.controller;
 
+import com.monfamily.wow.dto.BoardDTO;
 import com.monfamily.wow.model.BoardVO;
-import com.monfamily.wow.repository.BoardRepository;
+import com.monfamily.wow.service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,20 +16,20 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("api/board")
 public class BoardController {
 
-    private BoardRepository boardRepository;
+    private IBoardService boardService;
 
     @Autowired
-    public void setBoardRepository(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
+    public void setBoardService(IBoardService boardService) {
+        this.boardService = boardService;
     }
 
     @GetMapping("/list")
     public String list(Model model){
 
-        List<BoardVO> boards = boardRepository.findAll();
+        List<BoardDTO> boards = boardService.boardReadAll();
         model.addAttribute("boards",boards);
 
         return "board/list";
@@ -40,20 +41,20 @@ public class BoardController {
         if(boardId == null){
             model.addAttribute("board", new BoardVO());
         }else{
-            model.addAttribute("board", boardRepository.findById(boardId));
+            model.addAttribute("board", boardService.boardReadOne(boardId));
         }
 
         return "board/form";
     }
 
     @PostMapping("/form")
-    public String form(@Valid BoardVO board, BindingResult bindingResult){
+    public String form(@Valid BoardDTO board, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "board/form";
         }
 
-        boardRepository.save(board);
+        boardService.boardCreate(board);
         return "redirect:/board/list";
     }
 }
