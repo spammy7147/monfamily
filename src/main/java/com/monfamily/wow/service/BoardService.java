@@ -4,6 +4,7 @@ import com.monfamily.wow.dto.BoardDTO;
 import com.monfamily.wow.entity.Board;
 import com.monfamily.wow.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,8 +44,8 @@ public class BoardService implements IBoardService{
     }
 
     @Override
-    public List<BoardDTO> boardReadAll() {
-
+    public List<BoardDTO> boardReadAll(Pageable pageable) {
+        boardRepository.findAll(pageable).forEach(System.out::println);
         return null;
     }
 }

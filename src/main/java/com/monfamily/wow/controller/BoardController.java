@@ -4,18 +4,14 @@ import com.monfamily.wow.dto.BoardDTO;
 import com.monfamily.wow.model.BoardVO;
 import com.monfamily.wow.service.IBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("api/board")
 public class BoardController {
 
@@ -27,12 +23,9 @@ public class BoardController {
     }
 
     @GetMapping("/list")
-    public String list(Model model){
+    public List<BoardDTO> list(final Pageable pageable){
 
-        List<BoardDTO> boards = boardService.boardReadAll();
-        model.addAttribute("boards",boards);
-
-        return "board/list";
+        return boardService.boardReadAll(pageable);
     }
 
     @GetMapping("/form")
@@ -48,7 +41,7 @@ public class BoardController {
     }
 
     @PostMapping("/form")
-    public String form(@Valid BoardDTO board, BindingResult bindingResult){
+    public String form(BoardDTO board, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "board/form";

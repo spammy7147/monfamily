@@ -2,17 +2,13 @@ package com.monfamily.wow.entity;
 
 
 import lombok.*;
-
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 
-@Entity(name = "monfamily_board")
+@Entity
 @Getter
 @ToString
-@SequenceGenerator(
-        name = "monfamily_board_seq",
-        sequenceName = "monfamily_board_seq",
-        initialValue = 1,
-        allocationSize = 1)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends TimeEntity{
 
@@ -23,6 +19,7 @@ public class Board extends TimeEntity{
 
     @ManyToOne
     @JoinColumn(name="writer", nullable = false, referencedColumnName = "user_id")
+    @Cascade(value = CascadeType.DELETE)
     private User writer;
     private String title;
     private String content;

@@ -1,6 +1,8 @@
 package com.monfamily.wow.service;
 
 import com.monfamily.wow.dto.BoardDTO;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 
@@ -16,6 +18,6 @@ public interface IBoardService {
     //게시물 단일조회
     BoardDTO boardReadOne(Long BoardNum);
     //게시물 전부 조회
-    List<BoardDTO> boardReadAll();
+    List<BoardDTO> boardReadAll(Pageable pageable);
 
 }
