@@ -27,10 +27,9 @@ public class EntityTest {
     @Test
     public void addUser(){
         User user = User.builder()
-                    .userId("qwer12")
-                    .userPw("1234")
-                    .userName("홍길동")
-                    .userMail("spammy@gmail.com")
+                    .mail("spammy@gmail.com")
+                    .password("1234")
+                    .name("홍길동")
                     .userContact(1085928698)
                     .build();
         userRepository.save(user);
@@ -41,12 +40,8 @@ public class EntityTest {
        User user =  userRepository.findById((long)21).orElseThrow(()->new IllegalArgumentException("못찾음! user="+21));
         System.out.println(user);
         boardRepository.save(
-        BoardDTO.builder()
-                .writer(user)
-                .title("안녕하세요")
-                .content("테스트입니다")
-                .build()
-                .toEntity());
+                new BoardDTO(user,"안녕하세요","테스트입니다").toEntity()
+        );
 
 
 

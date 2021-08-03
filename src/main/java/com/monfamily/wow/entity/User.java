@@ -31,5 +31,14 @@ public class User extends TimeEntity{
     @Column
     private LocalDateTime lastLogin;
 
-
+    @Builder
+    public User(Long id, String mail, String password, String name, Integer userContact, boolean autoLogin, LocalDateTime lastLogin) {
+        this.id = id;
+        this.mail = mail;
+        this.password = password;
+        this.name = name;
+        this.userContact = userContact;
+        this.autoLogin = autoLogin;
+        this.lastLogin = lastLogin;
+    }
 }

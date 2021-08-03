@@ -25,6 +25,12 @@ public class BoardDTO {
         this.content = board.getContent();
     }
 
+    public BoardDTO(User user, String title, String content) {
+        this.writer = user;
+        this.title = title;
+        this.content = content;
+    }
+
 
     public Board toEntity(){
        return Board.builder()

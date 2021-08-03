@@ -23,25 +23,12 @@ public class UserDTO {
     private boolean autoLogin;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     public User toEntity(){
         return User.builder()
                 .id(id)
-                .userId(userId)
-                .userPw(userPw)
-                .userName(userName)
-                .userMail(userMail)
+                .mail(userMail)
+                .password(userPw)
+                .name(userName)
                 .userContact(userContact)
                 .lastLogin(lastLogin)
                 .autoLogin(autoLogin)
