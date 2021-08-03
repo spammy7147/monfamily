@@ -3,6 +3,7 @@ package com.monfamily.wow.controller;
 import com.monfamily.wow.dto.BoardDTO;
 import com.monfamily.wow.model.BoardVO;
 import com.monfamily.wow.service.IBoardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("api/board")
 public class BoardController {
@@ -24,7 +26,7 @@ public class BoardController {
 
     @GetMapping("/list")
     public List<BoardDTO> list(final Pageable pageable){
-
+        log.info(pageable.toString());
         return boardService.boardReadAll(pageable);
     }
 

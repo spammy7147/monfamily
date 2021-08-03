@@ -3,11 +3,12 @@ package com.monfamily.wow.dto;
 
 import com.monfamily.wow.entity.Board;
 import com.monfamily.wow.entity.User;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @ToString
 public class BoardDTO {
 
@@ -15,14 +16,6 @@ public class BoardDTO {
     private User writer;
     private String title;
     private String content;
-
-    @Builder
-    public BoardDTO(Long id, User writer, String title, String content) {
-        this.id = id;
-        this.writer = writer;
-        this.title = title;
-        this.content = content;
-    }
 
 
     public BoardDTO(Board board) {

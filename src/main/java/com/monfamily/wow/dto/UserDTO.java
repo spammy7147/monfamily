@@ -1,14 +1,15 @@
 package com.monfamily.wow.dto;
 
 import com.monfamily.wow.entity.User;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @ToString
 @Getter
+@Setter
 public class UserDTO {
 
     private Long id;
@@ -21,18 +22,6 @@ public class UserDTO {
     private LocalDateTime lastLogin;
     private boolean autoLogin;
 
-    @Builder
-    public UserDTO(Long id, String userId, String userPw, String userName, String userMail, Integer userContact, LocalDateTime regDate, LocalDateTime lastLogin, boolean autoLogin) {
-        this.id = id;
-        this.userId = userId;
-        this.userPw = userPw;
-        this.userName = userName;
-        this.userMail = userMail;
-        this.userContact = userContact;
-        this.regDate = regDate;
-        this.lastLogin = lastLogin;
-        this.autoLogin = autoLogin;
-    }
 
 
 
